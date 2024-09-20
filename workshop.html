@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Testing</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+
+    <script>
+      // the function we're testing
+      function square(x) {
+        return x * x;
+      }
+
+      const result = square(2);
+      const expected = 999;
+      /* if (result !== expected) {
+        console.error(
+          "Failed: expected square(2) to equal 4, but got " + result
+        );
+      } */
+
+      function equal(a, b) {
+        if (a === b) {
+          console.info(`Pass: The values, ${a} and ${b} are equal.`);
+        } else {
+          console.error(`Fail: The values, ${a} and ${b} are not equal.`);
+        }
+      }
+
+      equal(square(2), expected);
+      equal(square(3.5), 12.25);
+
+      function notEqual(a, b) {
+        if (a === b) {
+          console.error(`Fail: The values, ${a} and ${b} are equal.`);
+        } else {
+          console.info(`Pass: The values, ${a} and ${b} are not equal.`);
+        }
+      }
+
+      const result2 = square(3);
+      const expected2 = 10;
+
+      notEqual(result2, expected2);
+
+      const result3 = square(4);
+      const expected3 = 16;
+
+      notEqual(result3, expected3);
+
+      function test(name, testFunction, arg1, arg2, message) {
+        const result = testFunction(arg1);
+        const expected = arg2;
+        console.group(name);
+        if (result === expected) {
+          console.info(message || `Pass: ${result} is equal to ${expected}`);
+        } else {
+          console.error(`Fail: ${result} is not equal to ${expected}`);
+        }
+
+        console.groupEnd;
+      }
+
+      test("test square(2) is equal to 4", square, 2, 4);
+      test("test square(2) is equal to 4", square, 2, 4, "success");
+    </script>
+  </body>
+</html>
